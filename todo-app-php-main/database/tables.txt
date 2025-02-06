@@ -1,0 +1,28 @@
+CREATE DATABASE todo_app;
+
+USE todo_app;
+
+CREATE TABLE IF NOT EXISTS todo (
+        id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+        title VARCHAR(100) NOT NULL,
+        description VARCHAR(100) NOT NULL,
+        status BOOLEAN NOT NULL
+        );
+
+
+CREATE TABLE IF NOT EXISTS users (
+        id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+        username VARCHAR(100) NOT NULL,
+        password LONGTEXT(200) NOT NULL
+        );
+        
+CREATE TABLE reminders (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL, 
+    title VARCHAR(255) NOT NULL,
+    description TEXT NOT NULL,
+    reminder_date DATETIME NOT NULL,
+    status TINYINT(1) DEFAULT 0, 
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
